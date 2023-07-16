@@ -1,12 +1,7 @@
-# I don't know the right way to do this yet.
-import argparse
 import asyncio
+import argparse
 import logging
-from .webserver import WebServer
-
-__all__ = [
-    'WebServer',
-]
+from aiopypiserver import WebServer
 
 
 def args():
@@ -37,5 +32,5 @@ async def main():
     await asyncio.get_running_loop().create_future()
 
 
-def run():
+if __name__ == '__main__':
     asyncio.run(main())

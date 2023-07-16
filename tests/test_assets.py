@@ -1,4 +1,9 @@
-from aiopypiserver.webserver import get, file_handler
+import pytest
+import pytest_asyncio
+import asyncio
+from pathlib import Path
+import logging
+from aiopypiserver.webserver import get, WebServer, get_package_details
 
 
 def test_file():
@@ -9,11 +14,29 @@ def test_file():
         assert lines[8] == '    <p>{{var}}</p>'
 
 
-def test_file_handler():
-    class Request():
-        match_info = {
-            'file': ''
-        }
+def test_get_package_info():
+    info = get_package_details(Path('.').joinpath('packages').resolve())
+    assert True
 
-    res = file_handler(Request())
+
+@pytest.fixture(scope='module')
+def event_loop():
+    """Override default scope from function to module."""
+    policy = asyncio.get_event_loop_policy()
+    loop = policy.new_event_loop()
+    yield loop
+    loop.close()
+
+
+@pytest_asyncio.fixture(scope='module')
+async def webserver():
+    ws = WebServer()
+    await ws.run()
+    yield
+
+
+@pytest.mark.asyncio
+async def test_webserver(webserver):
+    logging.basicConfig(level=logging.INFO)
+    await asyncio.sleep(1000000)
     assert True

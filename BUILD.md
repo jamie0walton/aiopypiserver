@@ -21,6 +21,7 @@ Create initial framework of config and folders, enough to run test.
 # Ctrl Shft P - Python: Configure Tests, select pytest
 python -m build
 pip install --editable .
+python -m twine upload --repository pypi dist/*
 ```
 
 This is the minimal first setup. Nothing useful other than the framework at this point.
