@@ -25,3 +25,6 @@ classifiers = [
 [project.urls]
 "Homepage" = "https://github.com/jamie0walton/aiopypiserver"
 "Bug Tracker" = "https://github.com/jamie0walton/aiopypiserver/issues"
+
+[project.scripts]
+aiopypiserver = "aiopypiserver:run"

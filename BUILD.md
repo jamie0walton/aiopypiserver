@@ -27,3 +27,10 @@ python -m twine upload --repository pypi dist/*
 This is the minimal first setup. Nothing useful other than the framework at this point.
 
 Still no idea about how to set this up for aiopypiserver to eventually be runnable. TODO.
+
+# Using this software
+```
+aiopypiserver
+# in another terminal, but in the project dir
+python -m twine upload --repository-url http://localhost:8080/ dist/*
+```
