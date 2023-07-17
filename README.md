@@ -1,7 +1,7 @@
 # aiopypiserver
 
 A basic PyPi server using aiohttp to serve web pages. Intended to work behind
-an Apache proxy with relative href accessing.
+an Apache proxy with relative href accessing. Available here of from [PyPI](https://pypi.org/project/aiopypiserver/).
 
 # Motivation
 
@@ -16,7 +16,7 @@ in preference to forking the ```pypiserver``` code.
 # Usage
 
 ```
-usage: aiopypiserver [-h] [-p port] [-i address] [-u username] [-P password] [-v] [-q] [package_path]                                                   
+usage: aiopypiserver [-h] [-p port] [-i address] [-u username] [-P password] [-v] [-q] [package_path]
 Private PyPi  server.
 
 positional arguments:
