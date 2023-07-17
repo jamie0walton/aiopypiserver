@@ -21,8 +21,28 @@ Create initial framework of config and folders, enough to run test.
 # Ctrl Shft P - Python: Configure Tests, select pytest
 python -m build
 pip install --editable .
+python -m twine upload --repository pypi dist/*
 ```
 
 This is the minimal first setup. Nothing useful other than the framework at this point.
 
-Still no idea about how to set this up for aiopypiserver to eventually be runnable. TODO.
+# Dev cycle
+
+Select flake8 and 
+
+Build cycle is something like.
+```
+python -m build
+pip install --editable .
+python -m aiopypiserver
+aiopypiserver
+git status
+# branch should not be main
+git add .
+git commit -m "<comment>"
+git push
+# merge on github, have a look at how to flatten branches before merge.
+aiopypiserver
+# in another terminal, but in the project dir
+python -m twine upload --repository-url http://localhost:8080/ dist/*
+```
