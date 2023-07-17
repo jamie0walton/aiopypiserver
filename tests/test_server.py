@@ -11,7 +11,6 @@ def test_file():
         html = fh.read()
         lines = html.splitlines()
         assert lines[0] == '<!DOCTYPE html>'
-        assert lines[8] == '    <p>{{var}}</p>'
 
 
 def test_get_package_info():

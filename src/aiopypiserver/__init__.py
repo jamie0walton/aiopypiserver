@@ -1,10 +1,8 @@
-# I don't know the right way to do this yet.
-from .webserver import WebServer, main
+"""Make `aiopypiserver` work."""
+from .webserver import run
 
-__all__ = [
-    'WebServer',
-]
+__all__ = []
 
 
-def run():
-    main()
+def commandline_run():
+    run()

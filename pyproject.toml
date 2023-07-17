@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aiopypiserver"
-version = "0.0.0"
+version = "0.0.1"
 authors = [
     {name="Jamie Walton"}
 ]
@@ -27,4 +27,4 @@ classifiers = [
 "Bug Tracker" = "https://github.com/jamie0walton/aiopypiserver/issues"
 
 [project.scripts]
-aiopypiserver = "aiopypiserver:run"
+aiopypiserver = "aiopypiserver:commandline_run"
