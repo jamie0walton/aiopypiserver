@@ -22,13 +22,14 @@ def args():
     parser.add_argument('package_path', type=str, nargs='?',
                         default='packages', help='path to packages')
     parser.add_argument('-p', '--port', metavar='port', type=int,
-                        nargs=1, default=8080, help='Listen on port')
+                        nargs='?', default=8080, help='Listen on port')
     parser.add_argument('-i', '--interface', metavar='address', type=str,
-                        nargs=1, default='localhost', help='Listen on address')
+                        nargs='?', default='localhost',
+                        help='Listen on address')
     parser.add_argument('-u', '--username', metavar='username', type=str,
-                        nargs=1, help='For uploading packages')
+                        nargs='?', help='For uploading packages')
     parser.add_argument('-P', '--password', metavar='password', type=str,
-                        nargs=1, help='...')
+                        nargs='?', help='...')
     parser.add_argument('-v', '--verbose', action='store_true',
                         help='set debug level')
     parser.add_argument('-q', '--quiet', action='store_true',
@@ -125,11 +126,8 @@ class WebServer():
         self.port = config.port
         self.packages = config.package_path
         self.pkg_path = Path('.').joinpath(self.packages).resolve()
-        try:
-            self.username = config.username[0]
-            self.password = config.password[0]
-        except IndexError:
-            self.username, self.password = None, None
+        self.username = config.username
+        self.password = config.password
         self.info = get_package_details(self.pkg_path)
         if not self.pkg_path.is_dir():
             raise RuntimeError(f"{self.pkg_path} bad package directory")
