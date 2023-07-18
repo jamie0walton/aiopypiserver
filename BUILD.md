@@ -46,3 +46,22 @@ aiopypiserver
 # in another terminal, but in the project dir
 python -m twine upload --repository-url http://localhost:8080/ dist/*
 ```
+
+# Requires
+
+Started with python 3.11 on Windows 10, immediately wanted to run on Debian with python 3.9.
+
+Building required a whole bunch of stuff, some of which will not be required. Perhaps none are
+needed to run???
+
+```
+ pip3 install --upgrade pep517
+ pip3 install --upgrade wheel
+ pip3 install --upgrade build
+ pip3 install --upgrade setuptools
+ pip3 install --upgrade importlib
+ pip3 install --upgrade requests
+ ``
+
+Thanks to [bug report](https://github.com/robhagemans/monobit/issues/22) for the fix for
+importlib_resources. The ```__init__.py``` inclusion in assets did the trick.
