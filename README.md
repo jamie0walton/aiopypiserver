@@ -38,6 +38,14 @@ Can also be run as a module as ```python -m aiopypiserver -h```. Using the inter
 
 By default access logs are generated, as I find it useful to see these.
 
+# Apache
+
+Add the following to your Apache config. This is the item for pypiserver that required wsgi.
+```
+ProxyPass /pypi/ http://127.0.0.1:8080/
+ProxyPassReverse /pypi/ http://127.0.0.1:8080/
+```
+
 # Thanks
 
 Please let me know how you get on through the github page.
