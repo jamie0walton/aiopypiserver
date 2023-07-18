@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "program": "${file}",
-            "args": ["--username", "pypi", "--password", "pypi", "--verbose"],
+            "args": ["--port", "8080", "--interface", "0.0.0.0", "--username", "pypi", "--password", "pypi", "--verbose"],
             "console": "integratedTerminal",
             "justMyCode": true
         }
