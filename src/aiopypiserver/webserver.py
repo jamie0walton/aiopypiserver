@@ -128,6 +128,8 @@ class WebServer():
         self.pkg_path = Path('.').joinpath(self.packages).resolve()
         self.username = config.username
         self.password = config.password
+        logging.info(f"Running on {self.ip}:{self.port} "
+                     f"serving {self.packages}")
         self.info = get_package_details(self.pkg_path)
         if not self.pkg_path.is_dir():
             raise RuntimeError(f"{self.pkg_path} bad package directory")
@@ -138,7 +140,8 @@ class WebServer():
                   web.get('/simple/', self.simple_handler),
                   web.get('/simple/{package}/', self.simple_package_handler),
                   web.get('/packages/{file}', self.packages_file_handler),
-                  web.post('', self.post_handler)]
+                  web.post('', self.post_handler),
+                  web.get('/{file}', self.file_handler)]
         self.webapp.add_routes(routes)
         self.webapp.on_response_prepare.append(on_prepare)
         self.runner = web.AppRunner(self.webapp)
@@ -150,6 +153,13 @@ class WebServer():
                      ('port', str(self.port))]:
             html = html.replace(r'{{' + k + r'}}', v)
         return web.Response(body=html, content_type='text/html')
+
+    def file_handler(self, request: web.Request):
+        """Provide the any pages that might be in assets."""
+        try:
+            return web.FileResponse(get(request.match_info['file']))
+        except FileNotFoundError:
+            raise web.HTTPNotFound
 
     def packages_handler(self, request: web.Request):
         """Provide a list of modules or all packages."""
@@ -247,6 +257,8 @@ class WebServer():
 async def main():
     """Read config and run the server."""
     config = args()
+    if config.username is None or config.password is None:
+        logging.warn('empty password/username, uploading disabled')
     ws = WebServer(config)
     if config.verbose:
         logging.basicConfig(level=logging.INFO)
