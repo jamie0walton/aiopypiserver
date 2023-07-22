@@ -47,6 +47,11 @@ aiopypiserver
 python -m twine upload --repository-url http://localhost:8080/ dist/*
 ```
 
+Various twine command lines depending on install location.
+```
+twine upload -u User -p Pass --repository-url https://User:Pass@10.0.0.1/pypi/ dist/* --cert .\10.0.0.1.crt
+```
+
 # Requires
 
 Started with python 3.11 on Windows 10, immediately wanted to run on Debian with python 3.9.
