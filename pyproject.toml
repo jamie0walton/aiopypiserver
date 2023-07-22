@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aiopypiserver"
-version = "0.0.6"
+version = "0.0.7"
 authors = [
     {name="Jamie Walton"}
 ]
-description = "Do what pypiserver does, but with aiohttp."
+description = "Like pypiserver, but works behind a proxy with relative href addresses. Uses aiohttp."
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
